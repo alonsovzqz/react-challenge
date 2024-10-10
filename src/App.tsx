@@ -5,8 +5,9 @@ import MainLayout from './components/organisms/MainLayout';
 
 import { useUserData } from './hooks/useUserData';
 import { User } from './types/user';
+import CollapsibleCard from './components/organisms/CollapsibleCard';
 
-const USER_PER_PAGE = 10;
+const RESULTS_PER_PAGE = 10;
 
 function App() {
   const { data: users, isLoading, isError } = useUserData();
@@ -16,8 +17,9 @@ function App() {
     setCurrentPage(pageNumber);
   };
 
-  const startIndex = (currentPage - 1) * USER_PER_PAGE;
-  const paginatedUsers: User[] = users?.slice(startIndex, startIndex + USER_PER_PAGE) || [];
+  const totalPages = Math.ceil(users?.length / RESULTS_PER_PAGE);
+  const startIndex = (currentPage - 1) * RESULTS_PER_PAGE;
+  const paginatedUsers: User[] = users?.slice(startIndex, startIndex + RESULTS_PER_PAGE) || [];
 
   if (isLoading) {
     return (
@@ -33,15 +35,15 @@ function App() {
 
   return (
     <MainLayout>
-      {paginatedUsers.map((user) => (
-        <div key={user.id}>
-          {`${user.firstName} ${user.lastName}`}
-          {user.email}
-        </div>
-      ))}
+      <ul role='list' className='divide-y divide-gray-100'>
+        {paginatedUsers.map((user) => (
+          <CollapsibleCard key={user.id} user={user} />
+        ))}
+      </ul>
       <Pagination
         currentPage={currentPage}
-        totalPages={users?.length || 0}
+        totalPages={totalPages}
+        totalResults={users?.length}
         onPageChange={handlePageChange}
       />
     </MainLayout>

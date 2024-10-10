@@ -11,13 +11,13 @@ import Sidebar from "../molecules/Sidebar";
 import Header from "../molecules/Header";
 import { Footer } from "../molecules/Footer";
 
-import { Links } from "../../types/components";
+import { Links, MenuItem } from "../../types/components";
 
 interface MainLayoutProps {
   children: React.ReactNode;
 }
 
-const menuItems = [
+const menuItems: MenuItem[] = [
   {
     icon: HomeIcon,
     title: "Dashboard",
@@ -56,12 +56,12 @@ const MainLayout = ({ children }: MainLayoutProps) => {
   return (
     <div className="bg-white">
       <Sidebar menuItems={menuItems} />
-      <div className="lg:pl-72 flex flex-1 flex-col">
+      <div className="lg:pl-72 flex flex-1 flex-col h-screen">
         <Header />
         <main className="py-10 px-3">
           {children}
         </main>
-        <Footer className="mt-auto" links={footerLinks} />
+        <Footer className="mt-auto sticky" links={footerLinks} />
       </div>
     </div>
   );
