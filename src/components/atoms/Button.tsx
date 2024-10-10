@@ -1,23 +1,27 @@
-interface ButtonProps {
-    label: string;
-    onClick: () => void;
-    disabled?: boolean;
-}
+import React from "react";
+import { cn } from "../../lib/utils";
+import { ButtonProps } from "../../types/components";
 
-const Button = ({
-    label,
-    onClick,
-    disabled,
-}: ButtonProps) => {
-  return (
-    <button
-      onClick={onClick}
-      className="flex-none rounded-md bg-indigo-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
-      disabled={disabled}
-      >
-        {label}
-    </button>
-  )
-}
+const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+  ({ className, variant = "primary", ...props }, ref) => {
+    const baseStyles =
+      "flex rounded px-2.5 py-1.5 text-sm font-semibold shadow-sm ring-1 ring-inset ring-gray-300";
+    const variantStyles = {
+      primary: "bg-indigo-600 text-white hover:bg-indigo-500",
+      secondary: "bg-white text-gray-900 hover:bg-gray-50",
+      danger: "bg-red-700 text-white hover:bg-red-600",
+    };
 
-export default Button
+    return (
+      <button
+        ref={ref}
+        className={cn(baseStyles, variantStyles[variant], className)}
+        {...props}
+      />
+    );
+  }
+);
+
+Button.displayName = "Button";
+
+export { Button };

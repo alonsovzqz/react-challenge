@@ -1,9 +1,9 @@
 import {
     Bars3Icon,
-    BellIcon,
     ChevronDownIcon,
     MagnifyingGlassIcon 
 } from "@heroicons/react/20/solid";
+import { BellIcon } from "@heroicons/react/24/outline";
 
 const Header = () => {
   return (
@@ -57,7 +57,7 @@ const Header = () => {
                       ><span
                         aria-hidden="true"
                         className="ml-4 text-sm font-semibold leading-6 text-gray-900"
-                        >Tom Cook</span>
+                        >Jhon Doe</span>
                       <ChevronDownIcon className="ml-2 h-5 w-5 text-gray-400" />
                         </span>
                   </button>

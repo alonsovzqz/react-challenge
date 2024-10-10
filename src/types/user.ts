@@ -4,26 +4,36 @@ export interface Geo {
 }
 
 export interface Address {
-    street: string;
-    suite: string;
+    address: string;
     city: string;
-    zipcode: string;
-    geo: Geo;
+    state: string;
+    stateCode: string;
+    postalCode: string;
+    coordinates: Geo;
+    country: string;
 }
 
 export interface Company {
+    department: string;
     name: string;
-    catchPhrase: string;
-    bs: string;
+    title: string;
+    address: Address;
 }
 
 export interface User {
     id: number;
-    name: string;
-    username: string;
+    firstName: string;
+    lastName: string;
+    maidenName: string;
+    age: number;
+    gender: string;
     email: string;
-    address: Address;
     phone: string;
-    website: string;
+    username: string;
+    password: string;
+    birthDate: string;
+    image: string;
+    address: Address;
     company: Company;
+    role: string;
 }

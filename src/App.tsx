@@ -1,42 +1,50 @@
 import { useState } from 'react';
-import Button from './components/atoms/Button';
-import Input from './components/atoms/Input';
+
 import Pagination from './components/molecules/Pagination';
-import { CalendarIcon, FolderIcon, HomeIcon, UsersIcon } from '@heroicons/react/20/solid';
-import Sidebar from './components/molecules/Sidebar';
+import MainLayout from './components/organisms/MainLayout';
 
-import './App.css'
+import { useUserData } from './hooks/useUserData';
+import { User } from './types/user';
 
-const menuItems = [
-  {
-    icon: HomeIcon, title: 'Dashboard',
-  },
-  {
-    icon: UsersIcon, title: 'Team',
-  },
-  {
-    icon: FolderIcon, title: 'Projects',
-  },
-  {
-    icon: CalendarIcon, title: 'Calendar',
-  }
-];
+const USER_PER_PAGE = 10;
 
 function App() {
-  const [input, setInput] = useState('');
+  const { data: users, isLoading, isError } = useUserData();
   const [currentPage, setCurrentPage] = useState(1);
 
-  const inputHandler = (e: React.ChangeEvent<HTMLInputElement>) => setInput(e.target.value);
-  const handlePageChange = (page: number) => setCurrentPage(page);
+  const handlePageChange = (pageNumber: number) => {
+    setCurrentPage(pageNumber);
+  };
+
+  const startIndex = (currentPage - 1) * USER_PER_PAGE;
+  const paginatedUsers: User[] = users?.slice(startIndex, startIndex + USER_PER_PAGE) || [];
+
+  if (isLoading) {
+    return (
+      <div className='flex items-center justify-center h-screen'>Loading...</div>
+    );
+  }
+
+  if (isError) {
+    return (
+      <div className='flex items-center justify-center h-screen'>Error loading data.</div>
+    );
+  }
 
   return (
-    <>
-      <h1 className='text-3xl font-bold underline'>Hello world!</h1>
-      <Sidebar menuItems={menuItems} />
-      <Input value={input} onChange={inputHandler} placeholder='Enter your email...' />
-      <Button label='Click me!' onClick={() => console.log('Hello')} />
-        <Pagination currentPage={currentPage} totalPages={100} onPageChange={handlePageChange} />
-    </>
+    <MainLayout>
+      {paginatedUsers.map((user) => (
+        <div key={user.id}>
+          {`${user.firstName} ${user.lastName}`}
+          {user.email}
+        </div>
+      ))}
+      <Pagination
+        currentPage={currentPage}
+        totalPages={users?.length || 0}
+        onPageChange={handlePageChange}
+      />
+    </MainLayout>
   );
 }
 

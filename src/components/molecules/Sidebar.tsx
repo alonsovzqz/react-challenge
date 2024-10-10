@@ -1,13 +1,5 @@
 import { ArrowLeftStartOnRectangleIcon, BoltIcon } from "@heroicons/react/20/solid";
-
-type menuItem = {
-    icon: React.ComponentType<React.ComponentProps<'svg'>>,
-    title: string,
-};
-
-interface SidebarProps {
-    menuItems: menuItem[];
-}
+import { SidebarProps } from "../../types/components";
 
 const Sidebar = ({
     menuItems,
