@@ -7,7 +7,9 @@ Currently, two official plugins are available:
 - [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## Screenshot(s)
+## Overview
+
+### Screenshot(s)
 
 <figure>
   <img src="./mobile.JPG" width="287" height="1186">
@@ -18,6 +20,10 @@ Currently, two official plugins are available:
   <img src="./desktop.png" width="619" height="399">
   <figcaption>Desktop version</figcaption>
 </figure>
+
+### Links
+
+- Live site URL: [Github Pages](https://alonsovzqz.github.io/react-challenge/)
 
 ## My process
 
@@ -31,7 +37,7 @@ Currently, two official plugins are available:
 - [Hero Icons](https://heroicons.com/)
 - [Tailwind CSS](https://tailwindui.com/)
 
-### Overview
+### About
 
 To create this I tried to follow the instructions and the mockup presented for this challenge.
 
