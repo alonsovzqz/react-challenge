@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import Pagination from "./components/molecules/Pagination";
 import MainLayout from "./components/organisms/MainLayout";
@@ -20,19 +20,23 @@ function App() {
   const [currentPage, setCurrentPage] = useState(1);
   const [filteredUsers, setFilteredUsers] = useState<User[]>([]);
   const [sortOrder, setSortOrder] = useState<string>('asc');
+  const [searchTerm, setSearchTerm] = useState<string>("");
 
   useEffect(() => {
     if (users) {
-      const sortedUsersData = [...users].sort((a, b) => {
+      const sortedAndFilteredUsers = [...users]
+      .filter((user) =>
+        user.firstName.toLowerCase().includes(searchTerm.toLowerCase()))
+      .sort((a, b) => {
         if (sortOrder === 'asc') {
           return a.firstName.localeCompare(b.firstName);
         } else {
           return b.firstName.localeCompare(a.firstName);
         }
       });
-      setFilteredUsers(sortedUsersData);
+      setFilteredUsers(sortedAndFilteredUsers);
     }
-  }, [users, sortOrder]);
+  }, [users, sortOrder,searchTerm]);
 
   const handleDeleteUser = (userId: number) => {
     const updatedUsers = filteredUsers.filter((user) => user.id !== userId);
@@ -45,6 +49,10 @@ function App() {
 
   const handleSortChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setSortOrder(event.target.value);
+  };
+
+  const handleSearchChange = (term: string) => {
+    setSearchTerm(term);
   };
 
   const totalPages = Math.ceil(filteredUsers?.length / RESULTS_PER_PAGE);
@@ -71,7 +79,7 @@ function App() {
   }
 
   return (
-    <MainLayout>
+    <MainLayout onSearchChange={handleSearchChange}>
       <div className="flex justify-end mb-5">
         <Select
           label="Sort by name"

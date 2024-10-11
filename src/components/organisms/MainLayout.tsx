@@ -1,4 +1,3 @@
-import React from "react";
 import {
   CalendarIcon,
   FolderIcon,
@@ -11,11 +10,7 @@ import Sidebar from "../molecules/Sidebar";
 import Header from "../molecules/Header";
 import { Footer } from "../molecules/Footer";
 
-import { Links, MenuItem } from "../../types/components";
-
-interface MainLayoutProps {
-  children: React.ReactNode;
-}
+import { Links, MainLayoutProps, MenuItem } from "../../types/components";
 
 const menuItems: MenuItem[] = [
   {
@@ -52,12 +47,12 @@ const footerLinks: Links[] = [
   },
 ];
 
-const MainLayout = ({ children }: MainLayoutProps) => {
+const MainLayout = ({ children, onSearchChange }: MainLayoutProps) => {
   return (
     <div className="bg-white">
       <Sidebar menuItems={menuItems} />
       <div className="lg:pl-72 flex flex-1 flex-col h-screen">
-        <Header />
+        <Header onSearchChange={onSearchChange} />
         <main className="py-10 px-3">
           {children}
         </main>

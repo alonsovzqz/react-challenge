@@ -6,8 +6,13 @@ import {
 import { BellIcon } from "@heroicons/react/24/outline";
 import { Button } from "../atoms/Button";
 import { Input } from "../atoms/Input";
+import { HeaderProps } from "../../types/components";
 
-const Header = () => {
+const Header = ({ onSearchChange }: HeaderProps) => {
+  const handleSearchInput = (event: React.ChangeEvent<HTMLInputElement>) => {
+    onSearchChange(event.target.value);
+  };
+
   return (
     <div className="sticky top-0 z-40 flex h-16 shrink-0 items-center gap-x-4 border-b border-gray-200 bg-white px-4 shadow-sm sm:gap-x-6 sm:px-6 lg:px-8">
       <Button
@@ -36,6 +41,7 @@ const Header = () => {
             name="search"
             placeholder="Search..."
             type="search"
+            onChange={handleSearchInput}
           />
         </form>
         <div className="flex items-center gap-x-4 lg:gap-x-6">
