@@ -21,11 +21,11 @@ const Sidebar = ({
                     {menuItems.map((item, index) => (
                         <li key={index}>
                         <a
-                          className="text-gray-700 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 hover:bg-gray-50 hover:text-indigo-600"
+                          className="group text-gray-700 flex items-center gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 hover:bg-gray-50 hover:text-indigo-600"
                           href="#"
                           >
-                            <item.icon className="text-gray-400 h-6 w-6 shrink-0" />
-                            {item.title}
+                            <item.icon className="text-gray-400 h-6 w-6 shrink-0 group-hover:text-indigo-600" />
+                            <span className="group-hover:text-indigo-600">{item.title}</span>
                           </a>
                       </li>
                     ))}
@@ -33,9 +33,12 @@ const Sidebar = ({
                 </li>
                 <li className="mt-auto">
                   <a
-                    className="-mx-2 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-gray-700 hover:bg-gray-50 hover:text-indigo-600"
+                    className="group -mx-2 flex items-center gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-gray-700 hover:bg-gray-50 hover:text-indigo-600"
                     href="#"
-                    ><ArrowLeftStartOnRectangleIcon className="text-gray-400 h-6 w-6 shrink-0" /> Log out</a>
+                  >
+                    <ArrowLeftStartOnRectangleIcon className="text-gray-400 h-6 w-6 shrink-0 group-hover:text-indigo-600" />
+                    <span className="group-hover:text-indigo-600">Log out</span>
+                    </a>
                 </li>
               </ul>
             </nav>

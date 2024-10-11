@@ -80,9 +80,9 @@ function App() {
 
   return (
     <MainLayout onSearchChange={handleSearchChange}>
-      <div className="flex justify-end mb-5">
+      <div className="flex justify-end mb-5 px-4 lg:px-8 sm:px-6">
         <Select
-          label="Sort by name"
+          label="Sort"
           options={sortOptions}
           value={sortOrder}
           onChange={handleSortChange}
