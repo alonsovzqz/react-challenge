@@ -10,10 +10,17 @@ export type MenuItem = {
     icon: IconType,
     title: string,
 };
+export type Option = { label: string; value: string | number }
 
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: "primary" | "secondary" | "danger" | "phantom";
+}
+
+export interface SelectProps extends React.SelectHTMLAttributes<HTMLSelectElement> {
+    label?: string;
+    options: Option[];
+    variant?: 'primary' | 'secondary' | 'danger';
 }
 
 export type InputProps = React.InputHTMLAttributes<HTMLInputElement>
@@ -35,4 +42,5 @@ export interface SidebarProps {
 
 export interface CollapsibleCardProps {
     user: User;
+    handleDeleteUser: () => void;
 }

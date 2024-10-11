@@ -15,7 +15,7 @@ import {
   TrashIcon,
 } from "@heroicons/react/24/outline";
 
-const CollapsibleCard = ({ user }: CollapsibleCardProps) => {
+const CollapsibleCard = ({ user, handleDeleteUser }: CollapsibleCardProps) => {
   const [isCollapsed, setIsCollapsed] = useState<boolean>(true);
   const userFullName = `${user.firstName} ${user.lastName}`;
 
@@ -101,7 +101,7 @@ const CollapsibleCard = ({ user }: CollapsibleCardProps) => {
                 <span className="ml-1">Actions</span>
               </dt>
               <dd className="flex justify-end mt-1 text-sm leading-6 text-gray-700 sm:mt-2">
-                <Button variant="danger">
+                <Button variant="danger" onClick={handleDeleteUser}>
                     <TrashIcon className="w-5 h-5" />
                     <span className="ml-1">Delete</span>
                 </Button>
